@@ -1,0 +1,253 @@
+import React, { useState } from 'react';
+import { 
+  CreditCard, 
+  Plus, 
+  Search, 
+  Building2, 
+  RefreshCw, 
+  Snowflake, 
+  ShieldCheck, 
+  ChevronRight, 
+  History, 
+  Globe, 
+  Trash2,
+  KeyRound
+} from 'lucide-react';
+
+const CardItem = ({ type, name, balance, last4, holder, expiry, colorClass, isVirtual }) => (
+  <div className={`relative overflow-hidden rounded-[24px] p-6 text-white h-56 w-full max-w-[360px] shadow-lg transition-transform hover:scale-[1.02] ${colorClass}`}>
+    {/* Abstract background patterns */}
+    <div className="absolute right-0 top-0 opacity-10">
+      <div className="w-48 h-48 rounded-full border-[20px] border-white -mr-20 -mt-20" />
+      <div className="w-32 h-32 rounded-full border-[10px] border-white -mr-10 -mt-5" />
+    </div>
+
+    <div className="flex flex-col h-full justify-between relative z-10">
+      <div className="flex justify-between items-start">
+        <div>
+          <p className="text-[10px] uppercase tracking-widest font-semibold opacity-70">{type}</p>
+          <h4 className="text-xl font-bold mt-1">${balance.toLocaleString()}</h4>
+        </div>
+        <div className="flex gap-1">
+          {isVirtual && (
+            <span className="bg-white/20 px-2 py-0.5 rounded text-[10px] uppercase font-bold backdrop-blur-md">Virtual</span>
+          )}
+          <div className="w-8 h-5 bg-white/20 rounded-sm" /> {/* Mini card chip representation */}
+        </div>
+      </div>
+
+      <div>
+        <div className="flex items-center gap-1.5 mb-4">
+          <div className="flex gap-1.5">
+            {[1,2,3,4].map(i => <div key={i} className="w-1 h-1 rounded-full bg-white" />)}
+            <span className="mx-0.5"></span>
+            {[1,2,3,4].map(i => <div key={i} className="w-1 h-1 rounded-full bg-white" />)}
+            <span className="mx-0.5"></span>
+            {[1,2,3,4].map(i => <div key={i} className="w-1 h-1 rounded-full bg-white" />)}
+            <span className="mx-1"></span>
+            <span className="text-lg font-mono">{last4}</span>
+          </div>
+        </div>
+        
+        <div className="flex justify-between items-end">
+          <div>
+            <p className="text-[9px] uppercase tracking-wider opacity-60">Card Holder</p>
+            <p className="text-sm font-semibold uppercase">{holder}</p>
+          </div>
+          <div className="text-right">
+            <p className="text-[9px] uppercase tracking-wider opacity-60">Expires</p>
+            <p className="text-sm font-semibold">{expiry}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const BankRow = ({ name, last4, balance, status, syncTime, iconColor }) => (
+  <div className="flex items-center justify-between p-5 border-b border-slate-100 last:border-0 hover:bg-slate-50 transition-colors cursor-pointer">
+    <div className="flex items-center gap-4">
+      <div className={`w-12 h-12 ${iconColor} rounded-xl flex items-center justify-center text-white shadow-sm`}>
+        <Building2 size={24} />
+      </div>
+      <div>
+        <h5 className="font-bold text-slate-900">{name}</h5>
+        <p className="text-sm text-slate-400">•••• {last4} • {status}</p>
+      </div>
+    </div>
+    <div className="text-right">
+      <p className="font-bold text-slate-900">${balance.toLocaleString()}</p>
+      <p className="text-[10px] text-slate-400 mt-0.5">Synced {syncTime}</p>
+    </div>
+  </div>
+);
+
+const QuickActionItem = ({ icon: Icon, title, onClick, destructive }) => (
+  <button 
+    onClick={onClick}
+    className="w-full flex items-center justify-between p-4 rounded-xl border border-slate-100 hover:bg-slate-50 transition-all group"
+  >
+    <div className="flex items-center gap-3">
+      <div className={`p-2 rounded-lg ${destructive ? 'bg-rose-50 text-rose-600' : 'bg-slate-50 text-slate-500'} group-hover:scale-110 transition-transform`}>
+        <Icon size={18} />
+      </div>
+      <span className={`text-sm font-semibold ${destructive ? 'text-rose-600' : 'text-slate-700'}`}>{title}</span>
+    </div>
+    <ChevronRight size={16} className="text-slate-300" />
+  </button>
+);
+
+export default function CardManagement() {
+  const [isFrozen, setIsFrozen] = useState(false);
+
+  return (
+    <div className="max-w-[1400px] mx-auto p-8">
+      {/* Header section */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-4">
+        <div>
+          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">Cards & Accounts</h1>
+          <p className="text-slate-500 mt-1">Manage your physical and virtual assets in one place.</p>
+        </div>
+        <div className="flex items-center gap-3">
+          <button className="p-2.5 bg-white border border-slate-200 rounded-xl text-slate-400 hover:text-indigo-600 hover:border-indigo-100 transition-all shadow-sm">
+            <Search size={20} />
+          </button>
+          <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-indigo-100 transition-all">
+            <Plus size={20} />
+            <span>New Card</span>
+          </button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Left Column - Cards & Accounts */}
+        <div className="lg:col-span-8 space-y-10">
+          {/* Digital & Physical Cards Section */}
+          <section>
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-2 text-indigo-600">
+                <CreditCard size={20} className="stroke-[2.5px]" />
+                <h3 className="font-bold text-lg text-slate-900">Digital & Physical Cards</h3>
+              </div>
+              <button className="text-xs font-bold text-indigo-600 hover:underline">View All</button>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <CardItem 
+                type="Main Business" 
+                balance={42900.00} 
+                last4="5592" 
+                holder="ALEX STERLING" 
+                expiry="09/27" 
+                colorClass="bg-slate-900" 
+              />
+              <CardItem 
+                type="Subscription Virtual" 
+                balance={2140.50} 
+                last4="8810" 
+                holder="MARKETING TEAM" 
+                expiry="05/26" 
+                colorClass="bg-emerald-800"
+                isVirtual
+              />
+            </div>
+          </section>
+
+          {/* Linked Bank Accounts Section */}
+          <section>
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-2 text-indigo-600">
+                <Building2 size={20} className="stroke-[2.5px]" />
+                <h3 className="font-bold text-lg text-slate-900">Linked Bank Accounts</h3>
+              </div>
+              <button className="flex items-center gap-1.5 text-xs font-bold text-slate-400 hover:text-indigo-600 transition-colors">
+                <RefreshCw size={14} /> Refresh All
+              </button>
+            </div>
+
+            <div className="bg-white rounded-[24px] border border-slate-100 shadow-sm overflow-hidden">
+              <BankRow 
+                name="Chase Business Checking" 
+                last4="4902" 
+                balance={128450.00} 
+                status="Active" 
+                syncTime="2m ago" 
+                iconColor="bg-blue-600"
+              />
+              <BankRow 
+                name="Bank of America Savings" 
+                last4="1120" 
+                balance={54200.12} 
+                status="Active" 
+                syncTime="1h ago" 
+                iconColor="bg-rose-600"
+              />
+            </div>
+          </section>
+        </div>
+
+        {/* Right Column - Actions & Protection */}
+        <div className="lg:col-span-4 space-y-6">
+          <div className="bg-white p-6 rounded-[28px] border border-slate-100 shadow-sm">
+            <h4 className="font-bold text-slate-900 mb-6">Quick Actions</h4>
+            
+            <div className="space-y-4">
+              <div className="flex items-center justify-between p-5 bg-slate-50/50 rounded-2xl border border-slate-100">
+                <div className="flex items-center gap-4">
+                  <div className={`p-2.5 rounded-xl ${isFrozen ? 'bg-indigo-100 text-indigo-600' : 'bg-white text-slate-400 shadow-sm'}`}>
+                    <Snowflake size={20} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-slate-900">Freeze Card</p>
+                    <p className="text-[10px] text-slate-400 leading-tight">Instantly stop all transactions</p>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => setIsFrozen(!isFrozen)}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${isFrozen ? 'bg-indigo-600' : 'bg-slate-200'}`}
+                >
+                  <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${isFrozen ? 'translate-x-6' : 'translate-x-1'}`} />
+                </button>
+              </div>
+
+              <div className="p-5 bg-white rounded-2xl border border-slate-100">
+                <div className="flex justify-between items-center mb-4">
+                  <p className="text-sm font-bold text-slate-900">Monthly Spending Limit</p>
+                  <p className="text-sm font-bold text-indigo-600">$5,000.00</p>
+                </div>
+                <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                  <div className="bg-indigo-600 h-full w-[65%]" />
+                </div>
+                <div className="flex justify-between mt-3 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
+                  <span>$3,250.00 spent</span>
+                  <span>$1,750.00 left</span>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <QuickActionItem icon={KeyRound} title="Change PIN" />
+                <QuickActionItem icon={Globe} title="International Usage" />
+                <QuickActionItem icon={History} title="Request Statement" />
+                <div className="pt-2">
+                  <QuickActionItem icon={Trash2} title="Remove Card" destructive />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-indigo-50/50 p-6 rounded-[28px] border border-indigo-100/50 flex items-start gap-4">
+            <div className="p-2.5 bg-white text-indigo-600 rounded-xl shadow-sm">
+              <ShieldCheck size={20} />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-slate-900">Fraud Protection Active</p>
+              <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                Stitch AI's advanced machine learning is monitoring your accounts 24/7 for suspicious activity.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
