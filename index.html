@@ -1,420 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoneyBridge | Secure Financial Services</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <title>Money Bridge</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="app">
-        <!-- Login Section -->
-        <section id="login-section" class="page active">
-            <div class="container">
-                <div class="auth-card">
-                    <div class="brand-logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-bridge"></i>
-                        </div>
-                        <h1>MoneyBridge</h1>
-                        <p class="tagline">Secure Financial Services</p>
-                    </div>
-                    
-                    <div id="login-form-container">
-                        <h2 class="section-title">Welcome Back</h2>
-                        <p class="section-subtitle">Sign in to access your account</p>
-                        
-                        <form id="login-form">
-                            <div class="form-group">
-                                <label for="login-email"><i class="fas fa-envelope"></i> Email Address</label>
-                                <input type="email" id="login-email" placeholder="your@email.com" required>
-                                <div class="error-message" id="email-error"></div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="login-password"><i class="fas fa-lock"></i> Password</label>
-                                <div class="password-wrapper">
-                                    <input type="password" id="login-password" placeholder="••••••••" required>
-                                    <button type="button" id="toggle-password" class="password-toggle">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
-                                <div class="error-message" id="password-error"></div>
-                            </div>
-                            
-                            <div class="form-options">
-                                <label class="remember-me">
-                                    <input type="checkbox" id="remember-me">
-                                    <span>Remember me</span>
-                                </label>
-                                <a href="#" class="forgot-password">Forgot password?</a>
-                            </div>
-                            
-                            <button type="submit" class="btn-primary btn-block">
-                                <i class="fas fa-sign-in-alt"></i> Sign In
-                            </button>
-                        </form>
-                        
-                        <div class="divider">
-                            <span>or</span>
-                        </div>
-                        
-                        <p class="register-prompt">
-                            Don't have an account? 
-                            <a href="#" id="show-register">Create Account</a>
-                        </p>
-                    </div>
-                    
-                    <div id="register-form-container" class="hidden">
-                        <h2 class="section-title">Create Account</h2>
-                        <p class="section-subtitle">Join MoneyBridge to manage your finances</p>
-                        
-                        <form id="register-form">
-                            <div class="form-group">
-                                <label for="register-email"><i class="fas fa-envelope"></i> Email Address</label>
-                                <input type="email" id="register-email" placeholder="your@email.com" required>
-                                <div class="error-message" id="register-email-error"></div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="register-password"><i class="fas fa-lock"></i> Password</label>
-                                <div class="password-wrapper">
-                                    <input type="password" id="register-password" placeholder="Create a strong password" required>
-                                    <button type="button" id="toggle-register-password" class="password-toggle">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
-                                <div class="password-strength">
-                                    <div class="strength-bar" id="password-strength-bar"></div>
-                                </div>
-                                <div class="error-message" id="register-password-error"></div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="confirm-password"><i class="fas fa-lock"></i> Confirm Password</label>
-                                <div class="password-wrapper">
-                                    <input type="password" id="confirm-password" placeholder="Confirm your password" required>
-                                    <button type="button" id="toggle-confirm-password" class="password-toggle">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
-                                <div class="error-message" id="confirm-password-error"></div>
-                            </div>
-                            
-                            <div class="terms-acceptance">
-                                <label>
-                                    <input type="checkbox" id="terms-checkbox" required>
-                                    <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
-                                </label>
-                            </div>
-                            
-                            <button type="submit" class="btn-primary btn-block">
-                                <i class="fas fa-user-plus"></i> Create Account
-                            </button>
-                        </form>
-                        
-                        <div class="divider">
-                            <span>or</span>
-                        </div>
-                        
-                        <p class="login-prompt">
-                            Already have an account? 
-                            <a href="#" id="show-login">Sign In</a>
-                        </p>
-                    </div>
-                </div>
-                
-                <footer class="auth-footer">
-                    <p>&copy; 2026 MoneyBridge Financial Services. All rights reserved.</p>
-                    <div class="footer-links">
-                        <a href="#">Security</a>
-                        <a href="#">Privacy</a>
-                        <a href="#">Terms</a>
-                        <a href="#">Contact</a>
-                    </div>
-                </footer>
-            </div>
-        </section>
-        
-        <!-- Dashboard Section -->
-        <section id="dashboard-section" class="page">
-            <div class="dashboard-container">
-                <header class="dashboard-header">
-                    <div class="logo-container">
-                        <div class="logo-icon">
-                            <i class="fas fa-bridge"></i>
-                        </div>
-                        <h1>MoneyBridge</h1>
-                    </div>
-                    
-                    <div class="user-menu">
-                        <div class="user-info">
-                            <div class="user-name" id="dashboard-username">John Doe</div>
-                            <div class="user-email" id="dashboard-useremail">john.doe@example.com</div>
-                        </div>
-                        <div class="user-avatar" id="user-avatar">JD</div>
-                        <button class="btn-logout" id="logout-btn">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </button>
-                    </div>
-                </header>
-                
-                <div class="dashboard-main">
-                    <div class="dashboard-sidebar">
-                        <nav class="sidebar-nav">
-                            <button class="nav-item active" data-page="dashboard">
-                                <i class="fas fa-home"></i> Dashboard
-                            </button>
-                            <button class="nav-item" data-page="transfer">
-                                <i class="fas fa-exchange-alt"></i> Transfer Money
-                            </button>
-                            <button class="nav-item" data-page="loan">
-                                <i class="fas fa-file-invoice-dollar"></i> Apply for Loan
-                            </button>
-                            <button class="nav-item" id="download-receipt-btn">
-                                <i class="fas fa-file-csv"></i> Download Receipt
-                            </button>
-                        </nav>
-                        
-                        <div class="account-summary">
-                            <h3>Account Summary</h3>
-                            <div class="summary-item">
-                                <span>Account Number:</span>
-                                <span id="account-number" class="account-number">**** **** **** 4321</span>
-                            </div>
-                            <div class="summary-item">
-                                <span>Account Type:</span>
-                                <span>Primary Savings</span>
-                            </div>
-                            <div class="summary-item">
-                                <span>Branch:</span>
-                                <span>Downtown Financial Center</span>
-                            </div>
-                        </div>
-                        
-                        <div class="support-section">
-                            <h3>Need Help?</h3>
-                            <p><i class="fas fa-headset"></i> 24/7 Customer Support: 1800-MONEY-BRIDGE</p>
-                            <p><i class="fas fa-shield-alt"></i> Security Guarantee</p>
-                        </div>
-                    </div>
-                    
-                    <div class="dashboard-content">
-                        <div id="dashboard-page" class="content-page active">
-                            <h2 class="page-title">Dashboard</h2>
-                            
-                            <div class="balance-card card">
-                                <div class="card-header">
-                                    <h3>Current Balance</h3>
-                                    <div class="refresh-btn" id="refresh-balance">
-                                        <i class="fas fa-sync-alt"></i>
-                                    </div>
-                                </div>
-                                <div class="balance-amount" id="current-balance">₹85,432.50</div>
-                                <div class="balance-details">
-                                    <div class="detail-item">
-                                        <span>Available Balance</span>
-                                        <span id="available-balance">₹85,432.50</span>
-                                    </div>
-                                    <div class="detail-item">
-                                        <span>Pending Transactions</span>
-                                        <span>₹0.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="transactions-card card">
-                                <div class="card-header">
-                                    <h3>Recent Transactions</h3>
-                                    <a href="#" class="view-all">View All</a>
-                                </div>
-                                
-                                <div class="transactions-list" id="transactions-list">
-                                    <!-- Transactions will be inserted here by JavaScript -->
-                                </div>
-                            </div>
-                            
-                            <div class="quick-actions">
-                                <h3>Quick Actions</h3>
-                                <div class="actions-grid">
-                                    <button class="action-btn" id="quick-transfer">
-                                        <i class="fas fa-exchange-alt"></i>
-                                        <span>Transfer Money</span>
-                                    </button>
-                                    <button class="action-btn" id="quick-loan">
-                                        <i class="fas fa-file-invoice-dollar"></i>
-                                        <span>Apply for Loan</span>
-                                    </button>
-                                    <button class="action-btn" id="quick-download">
-                                        <i class="fas fa-file-csv"></i>
-                                        <span>Download Receipt</span>
-                                    </button>
-                                    <button class="action-btn" id="quick-support">
-                                        <i class="fas fa-headset"></i>
-                                        <span>Customer Support</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div id="transfer-page" class="content-page">
-                            <h2 class="page-title">Transfer Money</h2>
-                            
-                            <div class="card transfer-form-card">
-                                <form id="transfer-form">
-                                    <div class="form-group">
-                                        <label for="receiver-account"><i class="fas fa-user"></i> Receiver Account Number</label>
-                                        <input type="text" id="receiver-account" placeholder="Enter 10-digit account number" required>
-                                        <div class="error-message" id="receiver-error"></div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="transfer-amount"><i class="fas fa-rupee-sign"></i> Transfer Amount (₹)</label>
-                                        <input type="number" id="transfer-amount" placeholder="0.00" min="1" step="0.01" required>
-                                        <div class="error-message" id="amount-error"></div>
-                                        <div class="balance-info">Available Balance: <span id="transfer-available-balance">₹85,432.50</span></div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="transfer-description"><i class="fas fa-sticky-note"></i> Description</label>
-                                        <textarea id="transfer-description" placeholder="What's this transfer for?" rows="3" required></textarea>
-                                        <div class="error-message" id="description-error"></div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label><i class="fas fa-shield-alt"></i> Security Verification</label>
-                                        <div class="security-note">
-                                            <i class="fas fa-info-circle"></i> For security purposes, please verify this transaction is authorized by you.
-                                        </div>
-                                    </div>
-                                    
-                                    <button type="submit" class="btn-primary btn-block">
-                                        <i class="fas fa-paper-plane"></i> Transfer Money
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                        
-                        <div id="loan-page" class="content-page">
-                            <h2 class="page-title">Apply for Loan</h2>
-                            
-                            <div class="card loan-form-card">
-                                <form id="loan-form">
-                                    <div class="form-group">
-                                        <label for="loan-amount"><i class="fas fa-rupee-sign"></i> Loan Amount (₹)</label>
-                                        <input type="number" id="loan-amount" placeholder="Enter amount" min="1000" step="1000" required>
-                                        <div class="error-message" id="loan-amount-error"></div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="loan-purpose"><i class="fas fa-file-alt"></i> Loan Purpose</label>
-                                        <select id="loan-purpose" required>
-                                            <option value="">Select purpose</option>
-                                            <option value="home">Home Improvement</option>
-                                            <option value="education">Education</option>
-                                            <option value="vehicle">Vehicle Purchase</option>
-                                            <option value="medical">Medical Expenses</option>
-                                            <option value="business">Business Expansion</option>
-                                            <option value="personal">Personal Expenses</option>
-                                        </select>
-                                        <div class="error-message" id="loan-purpose-error"></div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="monthly-income"><i class="fas fa-briefcase"></i> Monthly Income (₹)</label>
-                                        <input type="number" id="monthly-income" placeholder="Enter your monthly income" min="10000" required>
-                                        <div class="error-message" id="income-error"></div>
-                                        <div class="income-note">Minimum required income: ₹25,000</div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="employment-status"><i class="fas fa-user-tie"></i> Employment Status</label>
-                                        <select id="employment-status" required>
-                                            <option value="">Select status</option>
-                                            <option value="employed">Employed (Full-time)</option>
-                                            <option value="self-employed">Self-employed</option>
-                                            <option value="part-time">Part-time</option>
-                                            <option value="unemployed">Unemployed</option>
-                                        </select>
-                                        <div class="error-message" id="employment-error"></div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label><i class="fas fa-file-contract"></i> Terms & Conditions</label>
-                                        <div class="terms-note">
-                                            <i class="fas fa-check-circle"></i> Loan approval subject to credit verification and eligibility criteria.
-                                        </div>
-                                    </div>
-                                    
-                                    <button type="submit" class="btn-primary btn-block">
-                                        <i class="fas fa-file-signature"></i> Submit Application
-                                    </button>
-                                </form>
-                            </div>
-                            
-                            <div id="loan-result" class="card loan-result-card hidden">
-                                <div class="result-icon" id="result-icon">
-                                    <i class="fas fa-check-circle"></i>
-                                </div>
-                                <h3 id="result-title">Loan Application Approved!</h3>
-                                <p id="result-message">Congratulations! Your loan of ₹500,000 has been approved. The amount will be credited to your account within 24 hours.</p>
-                                <div class="result-details">
-                                    <div class="detail-row">
-                                        <span>Loan Amount:</span>
-                                        <span id="result-loan-amount">₹500,000</span>
-                                    </div>
-                                    <div class="detail-row">
-                                        <span>Interest Rate:</span>
-                                        <span id="result-interest">12.5% p.a.</span>
-                                    </div>
-                                    <div class="detail-row">
-                                        <span>Tenure:</span>
-                                        <span id="result-tenure">60 months</span>
-                                    </div>
-                                    <div class="detail-row">
-                                        <span>EMI:</span>
-                                        <span id="result-emi">₹11,500/month</span>
-                                    </div>
-                                </div>
-                                <button class="btn-secondary" id="apply-another-loan">Apply for Another Loan</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <header>
+    <h1>Money Bridge</h1>
+  </header>
+
+  <!-- Login Page -->
+  <div id="loginPage" class="container">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <div id="loginMessage" class="message hidden"></div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboardPage" class="container hidden">
+    <h2>Dashboard</h2>
+    <p><strong>Available Balance:</strong> $<span id="balance">1000</span></p>
+    <div class="dashboard-options">
+      <button onclick="showPage('transferPage')">Money Transfer</button>
+      <button onclick="showPage('loanPage')">Apply for Loan</button>
     </div>
-    
-    <!-- Success Modal -->
-    <div id="success-modal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-icon success-icon">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <h2 id="modal-title">Transaction Successful!</h2>
-            <p id="modal-message">Your transfer of ₹5,000 to account ****4321 has been completed successfully.</p>
-            <div class="modal-buttons">
-                <button class="btn-primary" id="modal-dashboard-btn">Back to Dashboard</button>
-                <button class="btn-secondary" id="modal-new-transfer-btn">New Transfer</button>
-            </div>
-        </div>
+    <div class="transactions">
+      <h3>Transactions</h3>
+      <ul id="transactionList"></ul>
     </div>
-    
-    <!-- Error Modal -->
-    <div id="error-modal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-icon error-icon">
-                <i class="fas fa-exclamation-circle"></i>
-            </div>
-            <h2 id="error-modal-title">Transaction Failed</h2>
-            <p id="error-modal-message">Insufficient funds. Your available balance is ₹85,432.50</p>
-            <div class="modal-buttons">
-                <button class="btn-primary" id="error-modal-btn">Try Again</button>
-            </div>
-        </div>
+    <div id="dashboardMessage" class="message hidden"></div>
+  </div>
+
+  <!-- Money Transfer Page -->
+  <div id="transferPage" class="container hidden">
+    <h2>Money Transfer</h2>
+    <input type="number" id="transferAmount" placeholder="Enter amount">
+    <button onclick="transferMoney()">Send Money</button>
+    <button onclick="showPage('dashboardPage')">Back to Dashboard</button>
+    <div id="transferMessage" class="message hidden"></div>
+  </div>
+
+  <!-- Loan Request Page -->
+  <div id="loanPage" class="container hidden">
+    <h2>Loan Request</h2>
+    <p>You can request up to 20% of your available balance as a loan.</p>
+    <button onclick="applyLoan()">Apply for Loan</button>
+    <button onclick="showPage('dashboardPage')">Back to Dashboard</button>
+    <div id="loanMessage" class="message hidden"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Money Bridge</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Money Bridge</h1>
+  </header>
+
+  <!-- Login Page -->
+  <div id="loginPage" class="container">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <div id="loginMessage" class="message hidden"></div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboardPage" class="container hidden">
+    <h2>Dashboard</h2>
+    <p><strong>Available Balance:</strong> $<span id="balance">1000</span></p>
+    <div class="dashboard-options">
+      <button onclick="showPage('transferPage')">Money Transfer</button>
+      <button onclick="showPage('loanPage')">Apply for Loan</button>
     </div>
-    
-    <script src="script.js"></script>
+    <div class="transactions">
+      <h3>Transactions</h3>
+      <ul id="transactionList"></ul>
+    </div>
+    <div id="dashboardMessage" class="message hidden"></div>
+  </div>
+
+  <!-- Money Transfer Page -->
+  <div id="transferPage" class="container hidden">
+    <h2>Money Transfer</h2>
+    <input type="number" id="transferAmount" placeholder="Enter amount">
+    <button onclick="transferMoney()">Send Money</button>
+    <button onclick="showPage('dashboardPage')">Back to Dashboard</button>
+    <div id="transferMessage" class="message hidden"></div>
+  </div>
+
+  <!-- Loan Request Page -->
+  <div id="loanPage" class="container hidden">
+    <h2>Loan Request</h2>
+    <p>You can request up to 20% of your available balance as a loan.</p>
+    <button onclick="applyLoan()">Apply for Loan</button>
+    <button onclick="showPage('dashboardPage')">Back to Dashboard</button>
+    <div id="loanMessage" class="message hidden"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Money Bridge</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Money Bridge</h1>
+  </header>
+
+  <!-- Login Page -->
+  <div id="loginPage" class="container">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <div id="loginMessage" class="message hidden"></div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboardPage" class="container hidden">
+    <h2>Dashboard</h2>
+    <p><strong>Available Balance:</strong> $<span id="balance">1000</span></p>
+    <div class="dashboard-options">
+      <button onclick="showPage('transferPage')">Money Transfer</button>
+      <button onclick="showPage('loanPage')">Apply for Loan</button>
+    </div>
+    <div class="transactions">
+      <h3>Transactions</h3>
+      <ul id="transactionList"></ul>
+    </div>
+    <div id="dashboardMessage" class="message hidden"></div>
+  </div>
+
+  <!-- Money Transfer Page -->
+  <div id="transferPage" class="container hidden">
+    <h2>Money Transfer</h2>
+    <input type="number" id="transferAmount" placeholder="Enter amount">
+    <button onclick="transferMoney()">Send Money</button>
+    <button onclick="showPage('dashboardPage')">Back to Dashboard</button>
+    <div id="transferMessage" class="message hidden"></div>
+  </div>
+
+  <!-- Loan Request Page -->
+  <div id="loanPage" class="container hidden">
+    <h2>Loan Request</h2>
+    <p>You can request up to 20% of your available balance as a loan.</p>
+    <button onclick="applyLoan()">Apply for Loan</button>
+    <button onclick="showPage('dashboardPage')">Back to Dashboard</button>
+    <div id="loanMessage" class="message hidden"></div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
